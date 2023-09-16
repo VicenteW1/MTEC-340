@@ -9,5 +9,13 @@ BO II (an abbreveitaion used by the comunity that comes from COD:BO II, which wo
 ## Release Date 
 - November 12, 2012
 
-# Game Engine
+## Game Engine
 - IW (Infinity Ward)
+
+## Image
+![](BO2.png) 
+
+## List of Similar games
+- [Call of Duty](https://www.callofduty.com/hub) Every COD is extremely similar 
+- [Battlefield](https://www.ea.com/games/battlefield) Every Battlefield is also similar 
+- [Halo](https://www.halowaypoint.com/) This franchise is also similar and has a similar mode to zombies. 
