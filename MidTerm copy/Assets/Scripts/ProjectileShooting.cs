@@ -21,7 +21,7 @@ public class ProjectileShooting : MonoBehaviour
     {
         if (Input.GetKeyDown(Shoot) && readyToShoot == true)
         {
-            Instantiate(projectilePrefab, FirePoint.position, Quaternion.identity);
+            Instantiate(projectilePrefab, FirePoint.position, FirePoint.rotation);
             readyToShoot = false;
         }
     }

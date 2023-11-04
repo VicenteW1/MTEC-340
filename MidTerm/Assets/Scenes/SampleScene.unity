@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 182765958}
   m_Layer: 0
   m_Name: ship1
-  m_TagString: ship1
+  m_TagString: ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -661,8 +661,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdda19b20dc40472c98efc9cb00cc55a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives1: 5
-  lives1UI:
+  lives: 5
+  livesUI:
   - {fileID: 944029883}
   - {fileID: 1376925455}
   - {fileID: 66369303}
@@ -960,7 +960,7 @@ Transform:
   m_GameObject: {fileID: 633060794}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.03, y: 0.78, z: 0}
+  m_LocalPosition: {x: 0.03, y: 1.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1550,13 +1550,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1074033317}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: -0.84, z: 0}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalPosition: {x: 0.05, y: -1.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1091586834}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!1 &1091586833
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,7 +1574,7 @@ GameObject:
   - component: {fileID: 1091586841}
   m_Layer: 0
   m_Name: ship2
-  m_TagString: ship2
+  m_TagString: ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1829,11 +1829,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1091586833}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54164255dba1b40e8bf6eaaebe7aa31d, type: 3}
+  m_Script: {fileID: 11500000, guid: cdda19b20dc40472c98efc9cb00cc55a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives2: 5
-  lives2UI:
+  lives: 5
+  livesUI:
   - {fileID: 1040671629}
   - {fileID: 1183055069}
   - {fileID: 1073680688}
@@ -1842,6 +1842,7 @@ MonoBehaviour:
   explosionprefab: {fileID: 8218093438651234402, guid: c1b2e81cf17254a518bca3c7d7698321, type: 3}
   explosion0prefab: {fileID: 6976518268535340860, guid: e6d03b1532af84f19a8f7bcd0e894f07, type: 3}
   _Explosion0: {fileID: 8300000, guid: 18e30a636d3ee46f2b218ee339eb6f9c, type: 3}
+  _Explosion: {fileID: 8300000, guid: 762b42e63d6c6464ca314f1abe84880d, type: 3}
 --- !u!1 &1183055067
 GameObject:
   m_ObjectHideFlags: 0

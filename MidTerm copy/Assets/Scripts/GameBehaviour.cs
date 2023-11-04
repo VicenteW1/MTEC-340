@@ -1,84 +1,64 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+//using UnityEngine.UI;
 
-[RequireComponent(typeof(AudioSource))]
+//[RequireComponent(typeof(AudioSource))]
 
 
-public class GameBehaviour : MonoBehaviour
-{
-    public int lives1 = 5;
-    public int lives2 = 5;
-    public Image[] lives1UI;
-    public Image[] lives2UI;
-    public GameObject explosionprefab;
-    public GameObject explosion0prefab;
-    [SerializeField] AudioClip _Explosion0;
-    [SerializeField] AudioClip _Explosion;
+//public class GameBehaviour : MonoBehaviour
+//{
+//    public static GameBehaviour Instance;
 
-    AudioSource _source;
+//    [SerializeField] Player[] Players = new Player[2];
+//    public GameObject explosionprefab;
+//    public GameObject explosion0prefab;
+//    [SerializeField] AudioClip _Explosion0;
+//    [SerializeField] AudioClip _Explosion;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        _source = GetComponent<AudioSource>();
-    }
+//    public int numberLivesloose = 0;
 
-    // Update is called once per frame
-    void Update()
-    {
+//    AudioSource _source;
 
-    }
+//    private void Awake()
+//    {
+//        if (Instance != null && Instance != this)
+//        {
+//            Destroy(this);
+//        }
+//        else
+//        {
+//            Instance = this;
+//        }
+//    }
+//    void Start()
+//    {
+//        _source = GetComponent<AudioSource>();
+//    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("projectile"))
-        {
-            Instantiate(explosion0prefab, transform.position, Quaternion.identity);
-            lives1 -= 1;
-            for (int i = 0; i < lives1UI.Length; i++)
-            {
-                if (i < lives1)
-                    lives1UI[i].enabled = true;
-                else
-                    lives1UI[i].enabled = false;
+//    void Update()
+//    {
 
-            }
-            _source.PlayOneShot(_Explosion0);
+//    }
 
-            if (lives1 <= 0)
-            {
-                Debug.Log("Launching destruction!");
-                _source.PlayOneShot(_Explosion);
-                Instantiate(explosionprefab, transform.position, Quaternion.identity);
-                Destroy(GameObject.Find("Ship1"));
-                Destroy(collision.gameObject);
+//    public void UpdateScore(int player)
+//    {
+//        Players[player - 1].Lives--;
+//        //CheckWinner();
+//    }
 
-            }
-        }
-        if (collision.gameObject.CompareTag("projectile"))
-        {
-            Instantiate(explosion0prefab, transform.position, Quaternion.identity);
-            lives2 -= 1;
-            for (int i = 0; i < lives2UI.Length; i++)
-            {
-                if (i < lives2)
-                    lives2UI[i].enabled = true;
-                else
-                    lives2UI[i].enabled = false;
+//    //private void CheckWinner()
+//    //{
+//    //    if (Players[0].Lives >= numberLivesloose || Players[1].Lives >= numberLivesloose)
+//    //    {
+//    //        string winnerMessage = $"Player {(Players[0].Lives > Players[1].Live ? 1 : 2)} wins"!;
+//    //        _winnerMessage.text = winnerMessage;
+//    //        _winnerMessage.enabled = true;
+//    //        GuiManager.Instance.UpdateMessageGUI(_gameOverMessage);
+//    //    }
 
-            }
-            _source.PlayOneShot(_Explosion0);
 
-            if (lives2 <= 0)
-            {
-                Instantiate(explosionprefab, transform.position, Quaternion.identity);
-                Destroy(GameObject.Find("Ship2"));
-                Destroy(collision.gameObject);
-                // ask why this doenst work here -> _source.PlayOneShot(_Explosion);
-            }
-        }
-    }
-}
+//    //}
+
+//}
 

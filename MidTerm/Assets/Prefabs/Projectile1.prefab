@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1125889654772181195}
   m_Layer: 0
   m_Name: Projectile1
-  m_TagString: projectile1
+  m_TagString: projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,7 +133,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009095192, y: -0.250126}
+  m_Offset: {x: -0.009095192, y: 0.061745226}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.53233844, y: 0.20355436}
@@ -144,7 +144,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.28125, y: 0.84375}
+  m_Size: {x: 0.28125, y: 0.22000754}
   m_EdgeRadius: 0
 --- !u!50 &1125889654772181195
 Rigidbody2D:

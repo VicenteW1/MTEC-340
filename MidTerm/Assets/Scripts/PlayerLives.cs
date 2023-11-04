@@ -6,10 +6,10 @@ using UnityEngine.UI;
 [RequireComponent(typeof(AudioSource))]
 
 
-public class PlayerLives1 : MonoBehaviour
+public class PlayerLives : MonoBehaviour
 {
-    public int lives1 = 5;
-    public Image[] lives1UI;
+    public int lives = 5;
+    public Image[] livesUI;
     public GameObject explosionprefab;
     public GameObject explosion0prefab;
     [SerializeField] AudioClip _Explosion0;
@@ -31,21 +31,21 @@ public class PlayerLives1 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("projectile2"))
+        if (collision.gameObject.CompareTag("projectile"))
         {
             Instantiate(explosion0prefab, transform.position, Quaternion.identity);
-            lives1 -= 1;
-            for (int i = 0; i < lives1UI.Length; i++)
+            lives -= 1;
+            for (int i = 0; i < livesUI.Length; i++)
             {
-                if (i < lives1)
-                    lives1UI[i].enabled = true;
+                if (i < lives)
+                    livesUI[i].enabled = true;
                 else
-                    lives1UI[i].enabled = false;
+                    livesUI[i].enabled = false;
 
             }
             _source.PlayOneShot(_Explosion0);
 
-            if (lives1 <= 0)
+            if (lives <= 0)
             {
                 Debug.Log("Launching destruction!");
                 _source.PlayOneShot(_Explosion);

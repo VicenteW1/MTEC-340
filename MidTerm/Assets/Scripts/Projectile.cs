@@ -5,15 +5,15 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float moveSpeed = 10.0f;
-    public float YLimit = 5.0f;
-    
+    public float YLimit;
+
     // Update is called once per frame
     void Update()
     {
         GameObject.Find("Projectile");
         {
             transform.Translate(Vector2.up * moveSpeed * Time.deltaTime);
-            if (transform.position.y >= YLimit)
+            if (transform.position.y >= YLimit || transform.position.y <= -YLimit)
             {
                 Destroy(gameObject);
             }
