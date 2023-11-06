@@ -15,49 +15,93 @@ public class PlayerLives : MonoBehaviour
     [SerializeField] AudioClip _Explosion0;
     [SerializeField] AudioClip _Explosion;
 
+    public SpriteRenderer spriteRenderer;
+
     AudioSource _source;
+    GameObject shield;
  
-    // Start is called before the first frame update
     void Start()
     {
+        shield = transform.Find("Shield").gameObject;
+        DeactivateShield();
         _source = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (spriteRenderer != null)
+        {
+            StartCoroutine(ShieldFlicker());
+        }
+    }
+
+    void ActivateShield()
+    {
+        shield.SetActive(true);
+    }
+
+    void DeactivateShield() 
+    {
+        shield.SetActive(false);
+    }
+
+    bool HasShield()
+    {
+        return shield.activeSelf;
+    }
+
+    IEnumerator ShieldFlicker()
+    {
+        spriteRenderer.enabled = true;
+        yield return new WaitForSeconds(6.0f);
+        spriteRenderer.enabled = !spriteRenderer.enabled;
+        yield return new WaitForSeconds(2.0f);
+        DeactivateShield();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("projectile"))
         {
-            Instantiate(explosion0prefab, transform.position, Quaternion.identity);
-            lives -= 1;
-            for (int i = 0; i < livesUI.Length; i++)
+            if (HasShield())
             {
-                if (i < lives)
-                    livesUI[i].enabled = true;
-                else
-                    livesUI[i].enabled = false;
-
+                DeactivateShield();
             }
-            _source.PlayOneShot(_Explosion0);
-
-            if (lives <= 0)
+            else
             {
-                Debug.Log("Launching destruction!");
-                _source.PlayOneShot(_Explosion);
-                Instantiate(explosionprefab, transform.position, Quaternion.identity);
-                Destroy(gameObject);
-                Destroy(collision.gameObject);
+                Instantiate(explosion0prefab, transform.position, Quaternion.identity);
+                lives -= 1;
+                for (int i = 0; i < livesUI.Length; i++)
+                {
+                    if (i < lives)
+                        livesUI[i].enabled = true;
+                    else
+                        livesUI[i].enabled = false;
 
+                }
+                _source.PlayOneShot(_Explosion0);
+
+                if (lives <= 0)
+                {
+                    Debug.Log("Launching destruction!");
+                    _source.PlayOneShot(_Explosion);
+                    Instantiate(explosionprefab, transform.position, Quaternion.identity);
+                    Destroy(gameObject);
+                    Destroy(collision.gameObject);
+                }
             }
 
 
         }
-
+       
+        ShieldPowerUp powerUp = collision.GetComponent<ShieldPowerUp>();
+        if (powerUp)
+        {
+            if (powerUp.activateShield)
+            {
+                ActivateShield();
+            }
+        }
 
     }
 }

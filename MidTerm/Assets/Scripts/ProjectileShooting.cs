@@ -23,6 +23,7 @@ public class ProjectileShooting : MonoBehaviour
         {
             Instantiate(projectilePrefab, FirePoint.position, FirePoint.rotation);
             readyToShoot = false;
+           
         }
     }
 

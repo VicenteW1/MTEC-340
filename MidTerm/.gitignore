@@ -1,0 +1,70 @@
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+# Unity-specific ignores
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]serData/
+[Ii]mport/
+[Ss]cratch/
+[Oo]bj/
+[Ww]orksheets/
+[Pp]rojectSettings/
+[Aa]utoBuild/
+[Oo]utput/
+[Ll]ibrary-csharp/
+
+# Visual Studio Code-specific ignores
+.vscode/
+
+# macOS-specific ignores
+.DS_Store
+
+# Rider-specific ignores
+.idea/
+
+# Rider, VS and 2017, 2019 and up
+.vscode/
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.unityproj
+*.booproj
+*.sln.docstates
+
+# User-specific ignores
+[Ll]ibrary/
+[Aa]ssets/Assemblies/
+
+# Recycle Bin specific ignores
+$RECYCLE.BIN/
+Thumbs.db

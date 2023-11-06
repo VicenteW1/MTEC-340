@@ -9,45 +9,63 @@ public class ShipBehaviour : MonoBehaviour
 
     public KeyCode RightDirection;
     public KeyCode LeftDirection;
-    //public KeyCode dash;
+    public KeyCode dash;
 
-    //private bool canDash;
-    //private bool isDashing;
-    //[SerializeField] float dashingPower = 24f;
-    //[SerializeField] float dashingTime = 0.2f;
-    //[SerializeField] float dashingCooldown = 3.0f;
+    private float activeMoveSpeed;
+    public float dashSpeed;
 
-    //[SerializeField] TrailRenderer tr;
+    public float dashLength = 0.5f;
+    public float dashCooldown = 1f; 
 
+    private float dashCounter;
+    private float dashCoolCounter;
 
+    
+
+    void Start()
+    {
+        activeMoveSpeed = ShipSpeed;
+    }
 
     void Update()
     {
         if (Input.GetKey(RightDirection) && transform.position.x < XLimit)
         {
-            transform.position += new Vector3(ShipSpeed, 0, 0) * Time.deltaTime;
+            transform.position += new Vector3(activeMoveSpeed, 0, 0) * Time.deltaTime;
         }
 
         if (Input.GetKey(LeftDirection) && transform.position.x > -XLimit)
         {
-            transform.position -= new Vector3(ShipSpeed, 0, 0) * Time.deltaTime;
+            transform.position -= new Vector3(activeMoveSpeed, 0, 0) * Time.deltaTime;
         }
 
-        //if (Input.GetKeyDown(dash))
-        //{
-        //    StartCoroutine(Dash());
-        //}
+        if (Input.GetKeyDown(dash))
+        {
+            if (dashCoolCounter <= 0 && dashCounter <=0)
+            {
+                activeMoveSpeed = dashSpeed;
+                dashCounter = dashLength;
+            }
+        }
+
+        if (dashCounter > 0) 
+        {
+            dashCounter -= Time.deltaTime;
+            if (dashCounter <=0)
+            {
+                activeMoveSpeed = ShipSpeed;
+                dashCoolCounter = dashCooldown;
+            }
+        }
+
+        if (dashCoolCounter > 0)
+        {
+            dashCoolCounter -= Time.deltaTime;
+        }
+
+
     }
 
-    //private IEnumerator Dash()
-    //{
-    //    canDash = false;
-    //    isDashing = true;
-    //    new Vector2(transform.localScale.x * dashingPower, 0f);
-    //    tr.emitting = true;
-    //    yield return new WaitForSeconds(dashingTime);
-    //    tr.emitting = false;
-    //    isDashing = false;
-    //    yield return new WaitForSeconds(dashingCooldown);
-    //}
+
+
 } 
