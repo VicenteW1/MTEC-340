@@ -29,40 +29,42 @@ public class ShipBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(RightDirection) && transform.position.x < XLimit)
+        if (GameBehavior.Instance.CurrentState == GameBehavior.State.Play)
         {
-            transform.position += new Vector3(activeMoveSpeed, 0, 0) * Time.deltaTime;
-        }
-
-        if (Input.GetKey(LeftDirection) && transform.position.x > -XLimit)
-        {
-            transform.position -= new Vector3(activeMoveSpeed, 0, 0) * Time.deltaTime;
-        }
-
-        if (Input.GetKeyDown(dash))
-        {
-            if (dashCoolCounter <= 0 && dashCounter <=0)
+            if (Input.GetKey(RightDirection) && transform.position.x < XLimit)
             {
-                activeMoveSpeed = dashSpeed;
-                dashCounter = dashLength;
+                transform.position += new Vector3(activeMoveSpeed, 0, 0) * Time.deltaTime;
+            }
+
+            if (Input.GetKey(LeftDirection) && transform.position.x > -XLimit)
+            {
+                transform.position -= new Vector3(activeMoveSpeed, 0, 0) * Time.deltaTime;
+            }
+
+            if (Input.GetKeyDown(dash))
+            {
+                if (dashCoolCounter <= 0 && dashCounter <= 0)
+                {
+                    activeMoveSpeed = dashSpeed;
+                    dashCounter = dashLength;
+                }
+            }
+
+            if (dashCounter > 0)
+            {
+                dashCounter -= Time.deltaTime;
+                if (dashCounter <= 0)
+                {
+                    activeMoveSpeed = ShipSpeed;
+                    dashCoolCounter = dashCooldown;
+                }
+            }
+
+            if (dashCoolCounter > 0)
+            {
+                dashCoolCounter -= Time.deltaTime;
             }
         }
-
-        if (dashCounter > 0) 
-        {
-            dashCounter -= Time.deltaTime;
-            if (dashCounter <=0)
-            {
-                activeMoveSpeed = ShipSpeed;
-                dashCoolCounter = dashCooldown;
-            }
-        }
-
-        if (dashCoolCounter > 0)
-        {
-            dashCoolCounter -= Time.deltaTime;
-        }
-
 
     }
 

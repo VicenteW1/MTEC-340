@@ -1,84 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
+using System.Numerics;
 
-[RequireComponent(typeof(AudioSource))]
 
-
-public class GameBehaviour : MonoBehaviour
+public class GameBehavior : MonoBehaviour
 {
-    public int lives1 = 5;
-    public int lives2 = 5;
-    public Image[] lives1UI;
-    public Image[] lives2UI;
-    public GameObject explosionprefab;
-    public GameObject explosion0prefab;
-    [SerializeField] AudioClip _Explosion0;
-    [SerializeField] AudioClip _Explosion;
+    public static GameBehavior Instance;
 
-    AudioSource _source;
-
-    // Start is called before the first frame update
-    void Start()
+    public enum State
     {
-        _source = GetComponent<AudioSource>();
+        Play,
+        Pause,
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    [SerializeField] TextMeshProUGUI _pauseMessage;
 
-    }
+    public State CurrentState;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Awake()
     {
-        if (collision.gameObject.CompareTag("projectile2"))
+        // Singleton pattern
+        if (Instance != null && Instance != this)
         {
-            Instantiate(explosion0prefab, transform.position, Quaternion.identity);
-            lives1 -= 1;
-            for (int i = 0; i < lives1UI.Length; i++)
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+
+        CurrentState = State.Play;
+        if (CurrentState == State.Play)
+        {
+            Debug.Log("Play");
+
+            _pauseMessage.enabled = false;
+            
+        }
+    }
+
+    private void Update()
+    { 
+        if (CurrentState == State.Play)
+        {
+            if (Input.GetKeyDown(KeyCode.P))
             {
-                if (i < lives1)
-                    lives1UI[i].enabled = true;
-                else
-                    lives1UI[i].enabled = false;
-
-            }
-            _source.PlayOneShot(_Explosion0);
-
-            if (lives1 <= 0)
-            {
-                Debug.Log("Launching destruction!");
-                _source.PlayOneShot(_Explosion);
-                Instantiate(explosionprefab, transform.position, Quaternion.identity);
-                Destroy(gameObject);
-                Destroy(collision.gameObject);
-
+                Debug.Log("Pause State");
+                CurrentState = CurrentState == State.Play ? State.Pause : State.Play;
+                GuiManager.Instance.UpdateMessageGUI(_pauseMessage);
             }
         }
-        if (collision.gameObject.CompareTag("projectile1"))
+        else if (CurrentState == State.Pause)
         {
-            Instantiate(explosion0prefab, transform.position, Quaternion.identity);
-            lives2 -= 1;
-            for (int i = 0; i < lives2UI.Length; i++)
+            if (Input.GetKeyDown(KeyCode.P))
             {
-                if (i < lives2)
-                    lives2UI[i].enabled = true;
-                else
-                    lives2UI[i].enabled = false;
-
-            }
-            _source.PlayOneShot(_Explosion0);
-
-            if (lives2 <= 0)
-            {
-                Instantiate(explosionprefab, transform.position, Quaternion.identity);
-                Destroy(gameObject);
-                Destroy(collision.gameObject);
-                // ask why this doenst work here -> _source.PlayOneShot(_Explosion);
+                CurrentState = State.Play;
+                GuiManager.Instance.UpdateMessageGUI(_pauseMessage);
             }
         }
     }
 }
-

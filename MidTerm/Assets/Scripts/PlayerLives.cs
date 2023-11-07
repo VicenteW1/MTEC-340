@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 
 public class PlayerLives : MonoBehaviour
-{
+{ 
     public int lives = 5;
     public Image[] livesUI;
     public GameObject explosionprefab;
@@ -19,7 +19,7 @@ public class PlayerLives : MonoBehaviour
 
     AudioSource _source;
     GameObject shield;
- 
+
     void Start()
     {
         shield = transform.Find("Shield").gameObject;
@@ -59,6 +59,17 @@ public class PlayerLives : MonoBehaviour
         DeactivateShield();
     }
 
+    IEnumerator ShipDies()
+    {
+        spriteRenderer.enabled = false;
+        Debug.Log("Launching destruction!");
+        _source.PlayOneShot(_Explosion);
+        Instantiate(explosionprefab, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(1.0f);
+        Destroy(gameObject);
+        
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("projectile"))
@@ -83,11 +94,7 @@ public class PlayerLives : MonoBehaviour
 
                 if (lives <= 0)
                 {
-                    Debug.Log("Launching destruction!");
-                    _source.PlayOneShot(_Explosion);
-                    Instantiate(explosionprefab, transform.position, Quaternion.identity);
-                    Destroy(gameObject);
-                    Destroy(collision.gameObject);
+                    StartCoroutine(ShipDies());
                 }
             }
 

@@ -19,11 +19,14 @@ public class ProjectileShooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(Shoot) && readyToShoot == true)
+        if (GameBehavior.Instance.CurrentState == GameBehavior.State.Play)
         {
-            Instantiate(projectilePrefab, FirePoint.position, FirePoint.rotation);
-            readyToShoot = false;
-           
+            if (Input.GetKeyDown(Shoot) && readyToShoot == true)
+            {
+                Instantiate(projectilePrefab, FirePoint.position, FirePoint.rotation);
+                readyToShoot = false;
+
+            }
         }
     }
 
