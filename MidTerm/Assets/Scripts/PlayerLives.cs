@@ -65,7 +65,7 @@ public class PlayerLives : MonoBehaviour
         Debug.Log("Launching destruction!");
         _source.PlayOneShot(_Explosion);
         Instantiate(explosionprefab, transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
         
     }
