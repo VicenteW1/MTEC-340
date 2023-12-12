@@ -8,7 +8,8 @@ public class PlayerBehavior: MonoBehaviour
     [Header("Movement")]
     private float moveSpeed;
     public float walkSpeed;
-    public float sprintSpeed; 
+    public float sprintSpeed;
+    public float wallrunSpeed;
 
     public float groundDrag;
 
@@ -60,7 +61,11 @@ public class PlayerBehavior: MonoBehaviour
         sprinting,
         air,
         crouching,
+        wallrunning,
     }
+
+    public bool wallrunning; 
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -98,6 +103,12 @@ public class PlayerBehavior: MonoBehaviour
 
     private void StateHandler()
     {
+        if (wallrunning)
+        {
+            state = MovementState.wallrunning;
+            moveSpeed = wallrunSpeed;
+            //gonna have to change moveSpeed to desiredMoveSpeed
+        }
         if (grounded)
         {
             if (Input.GetKey(sprintKey))
